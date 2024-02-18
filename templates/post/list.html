@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post List</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="row">
+            {% for post in posts %}
+            <div class="card">
+                <div class="card-img-thumbnail">
+                    <img src="{{ post.image.url}}" alt="{{ post.title}}" height="250px" width="250px">
+                </div>
+                <div class="card-title">
+                    <a href="{% url 'post-detail' post.id %}">
+                        <h1>{{ post.title }}</h1>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <p>{{ post.content }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'post-edit' post.id %}" class="btn btn-sm btn-secondary"> Update</a>
+                    <a href="{% url 'post-delete' post.id %}" class="btn btn-sm btn-danger"> Delete</a>
+                    
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
